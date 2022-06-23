@@ -1,11 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Person {
-  String name = 'Mary';
-  String surname = 'Thompson';
-  String email = 'mary@emai.ru';
-  String password = '123';
-  String phoneNumber = '123456789';
+  String name = '';
+  String surname = '';
+  String email = '';
+  String password = '';
+  String phoneNumber = '';
   late SharedPreferences _prefs;
 
   Person(this.name, this.surname, this.email, this.phoneNumber, this.password);
