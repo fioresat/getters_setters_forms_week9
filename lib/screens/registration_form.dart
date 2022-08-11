@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import '../person.dart';
 import 'login.dart';
+import 'package:sizer/sizer.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class RegistrationFormState extends State {
         backgroundColor: Colors.teal,
       ),
       body: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(2.h),
           child: Form(
               key: _formKey,
               child: ListView.builder(
@@ -54,8 +55,9 @@ class RegistrationFormState extends State {
   }
 
   Widget _inputFieldName() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           initialValue: person.name,
           textAlign: TextAlign.center,
@@ -64,7 +66,7 @@ class RegistrationFormState extends State {
               return 'Пожалуйста введите своё имя';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Имя',
             border: OutlineInputBorder(
@@ -76,8 +78,9 @@ class RegistrationFormState extends State {
   }
 
   Widget _inputFieldSurname() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           initialValue: person.surname,
           textAlign: TextAlign.center,
@@ -86,7 +89,7 @@ class RegistrationFormState extends State {
               return 'Пожалуйста введите свою фамилию';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Фамилия',
             border: OutlineInputBorder(
@@ -98,8 +101,9 @@ class RegistrationFormState extends State {
   }
 
   Widget _inputFieldPhoneNumber() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
@@ -112,7 +116,7 @@ class RegistrationFormState extends State {
               return 'Пожалуйста введите свой номер телефона';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Номер телефона',
             border: OutlineInputBorder(
@@ -125,8 +129,9 @@ class RegistrationFormState extends State {
   }
 
   Widget _inputFieldEmail() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           initialValue: person.email,
           textAlign: TextAlign.center,
@@ -137,7 +142,7 @@ class RegistrationFormState extends State {
               return 'E-mail должен иметь вид ***@***.***';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Контактный E-mail:',
             border: OutlineInputBorder(
@@ -149,8 +154,9 @@ class RegistrationFormState extends State {
   }
 
   Widget _inputFieldPassword() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           obscureText: true,
           initialValue: person.password,
@@ -160,7 +166,7 @@ class RegistrationFormState extends State {
               return 'Пожалуйста придумайте пароль';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Пароль',
             border: OutlineInputBorder(
@@ -177,8 +183,8 @@ class RegistrationFormState extends State {
       child: CheckboxListTile(
           value: _agreement,
           activeColor: Colors.teal,
-          title: const Text('Я принимаю условия соглашения',
-              style: TextStyle(fontSize: 20.0)),
+          title: Text('Я принимаю условия соглашения',
+              style: TextStyle(fontSize: 20.sp)),
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (bool? value) => setState(() => _agreement = value!)),
     );
@@ -218,8 +224,8 @@ class RegistrationFormState extends State {
               content: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 20.0,
+                style: TextStyle(
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -227,9 +233,9 @@ class RegistrationFormState extends State {
           );
         }
       },
-      child: const Text(
+      child: Text(
         'Сохранить',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
       ),
     );
   }

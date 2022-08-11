@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../person.dart';
+import 'package:sizer/sizer.dart';
 import 'package:getters_setters_forms_week9/screens/login.dart';
 
 class YourPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class YourPageState extends State {
   late SharedPreferences _prefs;
   Color color = Colors.teal;
 
-  Person person = Person('','','','','');
+  Person person = Person('', '', '', '', '');
 
   @override
   void initState() {
@@ -25,7 +26,6 @@ class YourPageState extends State {
     person.loadData();
     _loadAgreement();
   }
-
 
   void _loadAgreement() async {
     _prefs = await SharedPreferences.getInstance();
@@ -52,7 +52,8 @@ class YourPageState extends State {
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: ListView(padding: const EdgeInsets.all(10.0), children: [
-          textInContainer('${person.name} ${person.surname}', const Icon(Icons.person)),
+          textInContainer(
+              '${person.name} ${person.surname}', const Icon(Icons.person)),
           textInContainer(person.email, const Icon(Icons.email)),
           textInContainer(person.phoneNumber, const Icon(Icons.phone)),
           _agreementCheckBox(),
@@ -65,9 +66,9 @@ class YourPageState extends State {
     );
   }
 
-  Widget textInContainer(String a, Icon b)
-  {
+  Widget textInContainer(String a, Icon b) {
     return Container(
+      height: 7.h,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -81,21 +82,21 @@ class YourPageState extends State {
         ),
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          b,
-          Text(
-            a,
-            textAlign: TextAlign.center,
-            style:
-            const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
-        ],
+      child: FittedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            b,
+            Text(
+              a,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }
-
 
   Widget _agreementCheckBox() {
     return Padding(
@@ -103,8 +104,8 @@ class YourPageState extends State {
       child: CheckboxListTile(
           value: agreement,
           activeColor: Colors.teal,
-          title: const Text('Входить автоматически',
-              style: TextStyle(fontSize: 20.0)),
+          title:
+              Text('Входить автоматически', style: TextStyle(fontSize: 20.sp)),
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (bool? value) {
             setState(() => agreement = value!);
@@ -117,22 +118,19 @@ class YourPageState extends State {
     await _prefs.setBool('agreement', agreement);
   }
 
-
   Widget _changeButton() {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RegistrationForm(),
+              builder: (context) => const RegistrationForm(),
             ));
       },
-      child: const Text(
+      child: Text(
         'Редактировать форму',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
       ),
     );
   }
-
-
 }

@@ -4,6 +4,7 @@ import 'package:getters_setters_forms_week9/main.dart';
 import 'package:getters_setters_forms_week9/screens/registration_form.dart';
 import 'package:getters_setters_forms_week9/screens/your_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 import '../person.dart';
 
@@ -15,12 +16,11 @@ class LogIn extends StatefulWidget {
 }
 
 class LogInState extends State {
-
   final _formKey = GlobalKey<FormState>();
   String email1 = '';
   String password1 = '';
   late SharedPreferences _prefs;
-  Person person = Person('','','','','');
+  Person person = Person('', '', '', '', '');
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class LogInState extends State {
           backgroundColor: Colors.teal,
         ),
         body: Container(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(5.h),
             child: Form(
                 key: _formKey,
                 child: ListView.builder(
@@ -63,13 +63,14 @@ class LogInState extends State {
                     }))),
       );
     } else {
-      return YourPage();
+      return const YourPage();
     }
   }
 
   Widget _inputFieldEmail() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           initialValue: email1,
           textAlign: TextAlign.center,
@@ -80,7 +81,7 @@ class LogInState extends State {
               return 'E-mail должен иметь вид ***@***.***';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Контактный E-mail:',
             border: OutlineInputBorder(
@@ -92,8 +93,9 @@ class LogInState extends State {
   }
 
   Widget _inputFieldPassword() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      height: 14.h,
+      padding: EdgeInsets.all(2.h),
       child: TextFormField(
           obscureText: true,
           initialValue: password1,
@@ -103,7 +105,7 @@ class LogInState extends State {
               return 'Пожалуйста вспомните пароль';
             }
           },
-          style: const TextStyle(fontSize: 20.0),
+          style: TextStyle(fontSize: 20.sp),
           decoration: InputDecoration(
             labelText: 'Пароль',
             border: OutlineInputBorder(
@@ -119,9 +121,9 @@ class LogInState extends State {
       style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                //side: BorderSide(color: Colors.red)
-              ))),
+        borderRadius: BorderRadius.circular(18.0),
+        //side: BorderSide(color: Colors.red)
+      ))),
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           Color color = Colors.red;
@@ -136,7 +138,7 @@ class LogInState extends State {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => YourPage(),
+                  builder: (context) => const YourPage(),
                 ));
           }
 
@@ -147,8 +149,8 @@ class LogInState extends State {
               content: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 20.0,
+                style: TextStyle(
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -156,9 +158,9 @@ class LogInState extends State {
           );
         }
       },
-      child: const Text(
+      child: Text(
         'Log In',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
       ),
     );
   }
@@ -168,15 +170,15 @@ class LogInState extends State {
       style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                //side: BorderSide(color: Colors.red)
-              ))),
+        borderRadius: BorderRadius.circular(18.0),
+        //side: BorderSide(color: Colors.red)
+      ))),
       onPressed: () {
         _awaitReturnValueFromSecondScreen(context);
       },
-      child: const Text(
+      child: Text(
         'Sign Up',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
       ),
     );
   }
@@ -185,7 +187,7 @@ class LogInState extends State {
     final result = await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RegistrationForm(),
+          builder: (context) => const RegistrationForm(),
         ));
     setState(() {
       if (result.email != '') {
